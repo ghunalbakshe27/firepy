@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F I R E P Y - Home</title>
+    <link class="browser-img" rel="shortcut icon" href="firepy.png" type="image/x-icon">
+    <style>
+        /* General Reset */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow-x: hidden;
+  background: #000;
+}
+
+/* Rotating Gradient Background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: -1;
+  background: conic-gradient(
+    from 0deg,
+    #ff0000,
+    #990000,
+    #000000,
+    #660000,
+    #ff0000
+  );
+  animation: spin 25s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+
+
+/* Title */
+header h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 5px;
+  color: #f44;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  width: 250px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 8px 14px;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Profile Icon */
+.profile {
+  position: relative;
+  justify-self: end;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  background: #f44;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  padding: 10px;
+  border-radius: 12px;
+  width: 180px;
+  box-shadow: 0 0 10px rgba(255,0,0,0.3);
+}
+
+.dropdown-menu a,
+.dropdown-menu .menu-item {
+  display: block;
+  padding: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu .menu-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Submenu */
+.submenu {
+  display: none;
+  margin-left: 10px;
+  border-left: 2px solid #f44;
+  padding-left: 8px;
+}
+
+/* Container Sections */
+.container {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+}
+
+/* Section Titles */
+.section h2 {
+  text-align: center;
+  font-size: 26px;
+  color: #f44;
+  margin-bottom: 20px;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+/* Grid Items */
+.grid-item {
+  text-align: center;
+  background: rgba(20,20,20,0.7);
+  padding: 15px;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,0,0,0.4);
+}
+
+.grid-item img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.grid-item h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #fff;
+}
+
+/* Footer */
+footer , header{
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+}
+
+/* Header */
+header {
+  /* background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px); */
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 120px;
+  align-items: center;
+  gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* sticky remove */
+}
+
+/* Logo */
+header .logo img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+#search_btn{
+  border-radius: 45%;
+  margin-right: 0px;
+}
+
+    </style>
+
+</head>
+<body>
+    
+    <header>
+        <!-- Logo Section -->
+        <div class="logo">
+          <img src="firepy.png" alt="FIREPY Logo">
+        </div>
+    
+        <!-- Centered Header Text -->
+        <h1>F I R E P Y</h1>
+    
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <input type="text" id="searchinput" placeholder="Search For Songs 🎵"><button id="search_btn">&#128269</button>
+        </div>
+    
+        <!-- Navigation Buttons -->
+        <nav>
+          <a href="New Releases.html">New Releases</a>
+          <a href="aboutus.html">About Us</a>
+          <a href="Genres.html">Genres</a>
+        </nav>
+    
+        <!-- User Profile Icon and Dropdown Menu -->
+        <div class="profile">
+            <div id="profile-icon" class="profile-icon"></div>
+            <div id="dropdown-menu" class="dropdown-menu">
+                <div class="menu-item" data-submenu="settings-submenu">Settings</div>
+                <div class="submenu" id="settings-submenu">
+                    <a href="#">Change Theme 
+                        <button id="theme-toggle" class="theme-toggle">Change</button>
+                    </a>
+                </div>
+    
+            <div class="menu-item" data-submenu="privacy-submenu">Privacy</div>
+            <div class="submenu" id="privacy-submenu">
+              <a href="#">Data Privacy</a>
+              <a href="#">Security Settings</a>
+            </div>
+    
+            <div class="menu-item" data-submenu="recent-submenu">Recent</div>
+            <div class="submenu" id="recent-submenu">
+              <a href="#">Recently Played</a>
+              <!-- <a href="#">Recently Added</a> -->
+            </div>
+            <a href="index.html" onclick="logout()">Log Out</a>
+          </div>
+        </div>
+      </header>
+    
+        <div class="container">
+        <!-- Featured Section -->
+        <div class="section">
+            <h2>Featured</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <a href="top.html"><img src="top hits.jpeg" alt="Album Cover"></a>
+                    <h3>Top Hits</h3>
+                </div>
+                <div class="grid-item">
+                    <a href="drivelist.html"><img src="drive.jpeg" alt="Album Cover"></a>
+                    <h3>Driving playlist</h3>
+                </div>
+                <div class="grid-item">
+                    <a href="mixlist.html"><img src="mixlist.jpg" alt="Album Cover"></a>
+                    <h3>MIX PLAYLIST</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- List Section -->
+        <div class="section">
+            <h2>List</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <a href="trend.html"><img src="trend.jpg" alt="Album Cover"></a>
+                    <h3>Trending Music</h3>
+                </div>
+                <div class="grid-item">
+                    <a href="bhajan.html"><img src="bhajan.jpeg" alt="Album Cover"></a>
+                    <h3>Bhakti Bhajan</h3>
+                </div>
+                <div class="grid-item">
+                    <a href="punjabi htis.html"><img src="punjabi.jpeg" alt="Album Cover"></a>
+                    <h3>Punjabi Hits</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Artists Section -->
+        <div class="section">
+            <h2>Artists</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <a href="arjit.html"><img src="arjitp.jpeg" alt="Album Cover"></a>
+                    <h3>Artist - Arjit Singh</h3>
+                </div>
+                <div class="grid-item">
+                    <a href="honeys.html"><img src="Honey Singh.jpg" alt="Album Cover"></a>
+                    <h3>Artist - Honey singh</h3>
+                </div>
+                <div class="grid-item">
+                    <a href="subh1.html"><img src="subh.jpg" alt="Album Cover"></a>
+                    <h3>Artist - Subh</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Charts Section -->
+        <div class="section">
+            <h2>Top Charts</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <a href="topeng.html"><img src="images.jpeg" alt="Album Cover"></a>
+                    <h3>Top English Songs</h3>
+                </div>
+                <div class="grid-item">
+                    <a href="indianhits.html"><img src="indianhit.jpeg" alt="Album Cover"></a>
+                    <h3>Top Indian Songs</h3>
+                </div>
+                <div class="grid-item">
+                    <a href="phonk.html"><img src="phonk.jpg" alt="Album Cover"></a>
+                    <h3>Top Phonk</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    
+  	 <footer>
+        <p>&copy; 2024 F I R E P Y. All Rights Reserved.</p>
+    </footer>
+
+    <script> 
+    //search btn working
+    const searchinput = document.getElementById("searchinput");
+    const search_btn = document.getElementById("search_btn");
+     // click event on btn 
+     search_btn.addEventListener("click",() =>{
+      const query = searchinput.value.trim();
+
+      if(query){
+        alert("you searched for:"+ query); // call or add your api or logic here 
+      }
+      else{
+        alert("Please type something to search")
+      }
+     })
+	// Get the username from localStorage
+const username = localStorage.getItem("username");
+
+// Check if the username exists
+if (username) {
+    const firstLetter = username.charAt(0).toUpperCase();
+    document.getElementById("profile-icon").textContent = firstLetter;
+}
+
+// Function to toggle the dropdown menu visibility
+function toggleMenu() {
+    var menu = document.getElementById("dropdown-menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+}
+
+// Function to handle submenu toggle
+function toggleSubmenu(event) {
+    const submenuId = event.target.getAttribute('data-submenu');
+    const submenu = document.getElementById(submenuId);
+    if (submenu) {
+        submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+    }
+}
+
+// Close the dropdown if the user clicks anywhere outside of the profile icon
+window.onclick = function(event) {
+    var menu = document.getElementById("dropdown-menu");
+    if (!event.target.matches('.profile, .profile *')) {
+        if (menu.style.display === "block") {
+            menu.style.display = "none";
+        }
+    }
+}
+
+// Function to log out
+function logout() {
+    localStorage.removeItem("username");
+    window.location.href = "index.html";
+}
+
+// Add event listener to the profile icon for dropdown toggle
+document.getElementById("profile-icon").addEventListener("click", toggleMenu);
+
+// Add event listeners to menu items for submenu toggling
+const menuItems = document.querySelectorAll('.menu-item');
+menuItems.forEach(item => {
+    item.addEventListener('click', toggleSubmenu);
+});
+
+// Close submenus if clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.matches('.menu-item, .menu-item *')) {
+        document.querySelectorAll('.submenu').forEach(submenu => {
+            submenu.style.display = 'none';
+        });
+    }
+});
+
+// Get the theme toggle button
+const themeToggleButton = document.getElementById("theme-toggle");
+
+// Check the current theme in localStorage
+const currentTheme = localStorage.getItem("theme");
+if (currentTheme === "light") {
+    applyLightTheme();
+} else {
+    applyDarkTheme();
+}
+
+// Function to apply light theme
+function applyLightTheme() {
+    document.body.style.backgroundColor = "#fff";
+    document.body.style.color = "#000";
+
+    // Change header background and text color
+    document.querySelector("header").style.backgroundColor = "#f5f5f5";
+    document.querySelector("header").style.color = "#000";
+
+    document.querySelectorAll(".grid-item").forEach(item => {
+        item.style.backgroundColor = "#f0f0f0";
+        item.style.color = "#000";
+        item.style.border = "1px solid black"; // Add black thin border
+    });
+
+    document.querySelectorAll(".search-bar").forEach(item => {
+        item.style.backgroundColor = "#fff";
+        item.style.color = "#000";
+        item.style.border = "1px solid black"; // Add black thin border
+        item.style.borderRadius = "25px";
+    });
+    document.querySelectorAll("nav a").forEach(item => {
+        item.style.backgroundColor = "";
+        item.style.color = "#f44";
+      
+        item.style.borderRadius = "";
+    });
+    const navlinks = document.querySelectorAll("nav a");
+    navlinks.forEach(link =>{
+      link.onmouseenter = null;
+      link.onmouseleave = null;
+
+      link.addEventListener("mouseenter",() =>{
+        link.style.color = "";
+        link.style.backgroundColor = "#f44"
+      });
+
+      link.addEventListener("mouseleave",() =>{
+        link.style.color = "#f44";
+        link.style.backgroundColor = "";
+      });
+    });
+
+    document.querySelectorAll("h1").forEach(item => {
+        item.style.backgroundColor = "#fff";
+        item.style.color = "#f44";
+        item.style.border = "1px solid black"; // Add black thin border
+        item.style.borderRadius = "16px";
+        item.style.padding = "10px";
+    });
+
+    themeToggleButton.classList.remove("off");
+    themeToggleButton.classList.add("on");
+    themeToggleButton.textContent = "Dark";
+    localStorage.setItem("theme", "light");
+}
+
+// Function to apply dark theme
+function applyDarkTheme() {
+    document.body.style.backgroundColor = "";
+    document.body.style.color = "#f0f0f0";
+
+    // Change header background and text color
+    document.querySelector("header").style.backgroundColor = "";
+    document.querySelector("header").style.color = "";
+
+    document.querySelectorAll(".grid-item").forEach(item => {
+        item.style.backgroundColor = "#282828";
+        item.style.color = "#fff";
+        item.style.border = "none"; // Remove border in dark mode
+    });
+
+    document.querySelectorAll("h1").forEach(item => {
+        item.style.backgroundColor = "";
+        item.style.color = "none";
+        item.style.border = "none"; // Remove border in dark mode
+        item.style.padding = "10px";
+    });
+
+    document.querySelectorAll(".search-bar").forEach(item => {
+        item.style.backgroundColor = "none";
+        item.style.color = "none";
+        item.style.border = ""; // Remove border in dark mode
+        item.style.borderRadius = "25px";    //add radius to search bar while in dark mode 
+    });
+    const btn = document.createElement("button");
+    btn.innerHTML = "&#128269";
+    btn.style.borderRadius = "45%";
+
+    const navlinks = document.querySelectorAll("nav a");
+    navlinks.forEach(link =>{
+      link.onmouseenter = null;
+      link.onmouseleave = null;
+      link.style.color = "";
+      link.style.backgroundColor = ""
+      });
+      document.querySelectorAll("nav a").forEach(item => {
+        item.style.backgroundColor = "";
+        item.style.color = "#fff";
+      
+        item.style.borderRadius = "";
+    });
+
+
+    themeToggleButton.classList.remove("on");
+    themeToggleButton.classList.add("off");
+    themeToggleButton.textContent = "Light";
+    localStorage.setItem("theme", "dark");
+}
+
+// Event listener to toggle theme
+themeToggleButton.addEventListener("click", function() {
+    if (themeToggleButton.classList.contains("on")) {
+        applyDarkTheme();
+    } else {
+        applyLightTheme();
+    }
+});
+
+</script>
+</body>
+</html>
